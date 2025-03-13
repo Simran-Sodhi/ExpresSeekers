@@ -44,6 +44,7 @@ merged_df = merged_df[:-4] # Remove the summary statistic rows
 merged_df.index = merged_df['gene_id'] # Set index as gene_id
 merged_df= merged_df.drop('gene_id', axis = 1) # Remove the gene_id which is present as a separate column
 merged_df.dropna() # Remove null unstranded values
+merged_df = merged_df.loc[merged_df.iloc[:, 1:].sum(axis=1) > 0] # Remove those genes that have 0 expression across all samples
 print("Dataset Head:")
 print(merged_df.head())
 
